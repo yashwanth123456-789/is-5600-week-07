@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../config';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, [])
+
+  const fetchOrders = () => {
+    fetch('${Base_URL}/orders')
+    .then((res) => res.json())
+    .then((data) => {
+      setOrders(data);
+    })
+  }
 
   /**
    * TODO
